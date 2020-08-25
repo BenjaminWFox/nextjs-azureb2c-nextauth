@@ -53,7 +53,17 @@ export default function Home() {
             </p>
               </a>
             </div>
-            <div>You are signed in! You can also sign out if you like.</div>
+            <div>
+              <p>You are signed in! You can also sign out if you like.</p>
+              <ul>
+                <li>
+                  <a style={{color: 'blue'}} href="/api/auth/signout/azureb2c">Sign Out (API)</a>
+                </li>
+                <li>
+                  <a style={{color: 'blue'}} href={`https://${process.env.AUTH_TENANT_NAME}.b2clogin.com/${process.env.AUTH_TENANT_NAME}.onmicrosoft.com/${process.env.USER_FLOW}/oauth2/v2.0/logout?post_logout_redirect_uri=${process.env.NEXTAUTH_URL}/auth/signout`}>Sign Out (FULL)</a>
+                </li>
+              </ul>
+            </div>
           </>
           : <div>
             You are not signed in! <a style={{color: 'blue'}} href="/api/auth/signin">You must sign in to access documentation!</a>
