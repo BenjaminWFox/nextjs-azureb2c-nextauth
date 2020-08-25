@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 
 const tenantName = process.env.AUTH_TENANT_NAME
+const tenantGuid = process.env.AUTH_TENANT_GUID
 const userFlow = process.env.USER_FLOW
 
 const options = {
@@ -23,7 +24,7 @@ const options = {
         grant_type: 'authorization_code',
       },
       accessTokenUrl: `https://${tenantName}.b2clogin.com/${tenantName}.onmicrosoft.com/${userFlow}/oauth2/v2.0/token`,
-      // requestTokenUrl: 'https://login.microsoftonline.com/2cc61216-bdb2-4dcd-9705-601b506491b2/oauth2/v2.0/token',
+      // requestTokenUrl: `https://login.microsoftonline.com/${process.env.AUTH_TENANT_GUID}/oauth2/v2.0/token`,
       authorizationUrl: `https://${tenantName}.b2clogin.com/${tenantName}.onmicrosoft.com/${userFlow}/oauth2/v2.0/authorize?response_type=code+id_token&response_mode=form_post`,
       profileUrl: 'https://graph.microsoft.com/oidc/userinfo',
       profile: (profile) => {
